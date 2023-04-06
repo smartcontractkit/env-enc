@@ -1,0 +1,6 @@
+node_modules
+.env.enc
+coverage
+coverage.json
+.DS_Store
+dist
