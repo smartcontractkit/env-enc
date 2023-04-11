@@ -5,11 +5,7 @@ import path from 'path'
 export const runShellScriptInSameTerminal = () => {
   let scriptPath, command, args
 
-  if (isRunningInCmd()) {
-    scriptPath = path.join(__dirname, 'scripts', 'setPassword.cmd')
-    command = 'cmd.exe'
-    args = ['/c', scriptPath]
-  } else if (isRunningInPowerShell()) {
+  if (os.platform() === 'win32') {
     scriptPath = path.join(__dirname, 'scripts', 'setPassword.ps1')
     command = 'powershell.exe'
     args = ['-ExecutionPolicy', 'Unrestricted', '-NoLogo', '-File', scriptPath]
@@ -18,7 +14,7 @@ export const runShellScriptInSameTerminal = () => {
     command = 'bash'
     args = [scriptPath]
   } else {
-    console.log('This script is designed to run in Unix terminal, Command Prompt, or PowerShell only.')
+    console.log('This script is designed to run in Unix terminal or PowerShell only.')
     return
   }
 
@@ -34,13 +30,5 @@ export const runShellScriptInSameTerminal = () => {
 }
 
 const isRunningInUnixTerminal = () => {
-  return os.platform() !== 'win32'
-}
-
-const isRunningInPowerShell = () => {
-  return process.env.PSModulePath !== undefined
-}
-
-const isRunningInCmd = () => {
-  return process.env.ComSpec !== undefined && !isRunningInPowerShell()
+  return ['aix', 'darwin', 'freebsd', 'linux', 'openbsd', 'sunos'].includes(os.platform())
 }
