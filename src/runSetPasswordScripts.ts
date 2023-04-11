@@ -30,5 +30,5 @@ export const runShellScriptInSameTerminal = () => {
 }
 
 const isRunningInUnixTerminal = () => {
-  return ['aix', 'darwin', 'freebsd','linux','openbsd', 'sunos'].includes(os.platform())
+  return ['aix', 'darwin', 'freebsd', 'linux', 'openbsd', 'sunos'].includes(os.platform())
 }
