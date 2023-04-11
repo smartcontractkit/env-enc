@@ -1,6 +1,6 @@
 {
   "name": "@chainlink/env-enc",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A tool for loading and storing encrypted environment variables",
   "main": "dist/index.js",
   "scripts": {
